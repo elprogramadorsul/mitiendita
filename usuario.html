@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Usuario</title>
+  <link rel="stylesheet" type="text/css" href="css/materialize.css">
+
+</head>
+<body class="#e0f7fa cyan lighten-5">
+
+<style type="text/css">
+	font: 13px verdana;
+	font-weigth:normal;
+</style>
+
+	 <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/materialize.js"></script>
+
+
+<nav>
+    <div class="nav-wrapper  #64b5f6 blue lighten-2">
+      <a class="brand-logo" href="/index.html">Mi Tiendita</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        
+        <li><a id = "productos" onclick="window.open('formularioProductos.html')" rel="nofollow">Publica tus productos</a></li>
+
+        <li><a id = "cierre_sesion" href="https://www.mercadolibre.com/jms/mlm/lgz/logout/?go=https://localhost/authorization?response_type=token&client_id=7384467225553284" onclick="window.open('/index.html')">Cerrar Sesion</a></li>
+        
+        <li><a href="https://registration.mercadolibre.com.mx/registration?confirmation_url=https%3A%2F%2Fauth.mercadolibre.com.mx%2Fauthorization%3Fresponse_type%3Dtoken">
+          Registrate
+
+        </a>
+      </ul>
+    </div>
+  </nav>
+
+  <div style="align:center" id="bienvenido" align="right" style type="text/css" href="css/materialize.css">
+
+  </div>
+
+<!--
+
+Caja Informativa con Datos del Usuario
+
+-->
+<div id="tablaUsuario" class="row" class="col s2 m6" >
+          
+
+          <div class="cols1 m6 2 ">
+  
+              <a class="waves-effect waves-light btn right" onclick="window.open('formularioProductos.html')" ><i src="Iconos/upload.png"></i>Publicar producto</a>
+
+          </div> 
+
+        <div class="col s11 m6">
+          <div class="card #00838f cyan darken-3">
+            <div class="card-content white-text">
+              <span class="card-title">Tus Datos de Usuario</span>
+              
+              <p id="datosAdress"></p>
+              <p id="datosciudad"></p>
+              <p id="datosEmail"></p>
+              <p id="datosURL"></p>
+
+            </div>
+            <div class="card-action">
+              <a class=" hide-on-med-and-down" align=center onclick="window.open('https://myaccount.mercadolibre.com.mx/profile')" rel="nofollow" class="card-content white-text">Editar mis Datos</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+<script type="text/javascript">
+  //Obteniendo el Arreglo de la url.
+    var url= document.location.hash;
+    var arrayCadena=url.split("&");
+    console.log(arrayCadena);
+//Obtenemos el Access
+    var access=arrayCadena[0].split("=");
+    var token=access[1];
+    console.log(token);
+//obtenemos el expire_ide    
+    var expire=arrayCadena[1].split("=");
+    var expire_id=expire[1]
+    console.log(expire_id);
+//obtenemos el userId
+    var user=arrayCadena[2].split("=");
+    var user_id=user[1];
+    console.log(user_id);
+    var itemSRC=[];
+</script>
+
+<script type="text/javascript">
+
+//obtension de los datos de ususario
+   
+    $.ajax({
+      url: 'https://api.mercadolibre.com/users/'+ user_id +'?access_token='+ token,
+      type: 'GET',
+      success: function(dato){
+        console.log(dato);
+        document.getElementById('bienvenido').innerHTML="Bienvenido "+dato.nickname;
+        document.getElementById('datosAdress').innerHTML="Direccion: "+ dato.address.address+", C.P: " + dato.address.zip_code;  ;
+        document.getElementById('datosciudad').innerHTML="Ciudad/Delegacion: "+dato.address.city;
+        document.getElementById('datosEmail').innerHTML="Email: "+dato.email;
+        document.getElementById('datosURL').innerHTML="Tu Sitio Mercado Libre: "+dato.permalink;
+
+        //obtencion de los datos Seller del usuario  
+    $.ajax({
+      url: 'https://api.mercadolibre.com/sites/'+dato.site_id+'/search?nickname='+dato.nickname,
+      method:"GET",
+      success: function(seller){
+        console.log(seller);
+
+        //Obtencion de listado Items del Seller
+        $.ajax({
+          url:'https://api.mercadolibre.com/users/'+seller.seller.id+'/items/search?access_token='+token,
+          method:"GET",
+          success:function(listItem){
+            console.log(listItem);
+            $.each(listItem.results, function(i,item){
+
+              console.log(i,item)
+              var index=i;
+           itemSRC.push(item);
+              console.log(itemSRC);
+
+            })
+
+         //Obtencion y pintado del list Item del Seller
+
+          console.log(itemSRC.length);
+       
+
+         for (var i =0; i < itemSRC.length; i++) {
+  
+         $.ajax({
+          url:'https://api.mercadolibre.com/items/'+itemSRC[i]+'?access_token='+token,
+          method:"GET",
+          success:function (elementoItem){
+
+
+            console.log("que hongo",elementoItem.title);
+
+            /*document.getElementById("nameItem").innerHTML=elementoItem.title;
+            document.getElementById("stock").innerHTML=elementoItem.initial_quantity;
+            document.getElementById("precio").innerHTML=elementoItem.price;
+            document.getElementById("itemImg").innerHTML=elementoItem.secure_thumbnail;
+          */
+          
+          var list = $('<div id='+i+'>').append('<label>Nombre del producto: '+elementoItem.title+'</label><label>  Precio del Producto:  '+elementoItem.price+'</label><img src='+elementoItem.secure_thumbnail+'> ');
+          
+            $("body").append(list);
+          
+          }
+         })  
+         }
+          }
+        })
+      }
+    });
+      }
+      });
+  
+    
+</script>
+
+
+</body>
+</html>

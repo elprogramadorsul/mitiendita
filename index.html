@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="css/materialize.css">
+
+</head>
+<body>
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/materialize.js"></script>
+
+<nav>
+    <div class="nav-wrapper  #64b5f6 blue lighten-2">
+      <a href="#" class="brand-logo" href="index.html">Mi Tiendita</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a id="apertura_sesion" href="https://auth.mercadolibre.com.mx/authorization?response_type=token&client_id=7384467225553284">Inicio para vendedores</a></li>
+        
+        <li><a href="https://registration.mercadolibre.com.mx/registration?confirmation_url=https%3A%2F%2Fauth.mercadolibre.com.mx%2Fauthorization%3Fresponse_type%3Dtoken">
+          Registrate
+        </a>
+      </ul>
+    </div>
+  </nav>
+
+<div align="center" id="contenido">
+  <img src="logo-mercadolibre.jpg"  width="50%" height="50%">
+</div>
+
+<div id="usuario">
+
+</div>
+
+  <script type="text/javascript">
+
+
+//Funcion para la expiracion del access token
+
+/*
+timer=(expire_id)*1000;
+
+var timi=window.setTimeout(vuelveLogear(),21600);
+
+function vuelveLogear(){
+    alert("Por seguridad, despues de 6 horas es necesario volver a Iniciar sesion")
+    location.href="https://www.mercadolibre.com/jms/mlm/lgz/logout/?go=https://localhost/authorization?response_type=token&client_id=7384467225553284";
+};
+
+*/
+//cambio de contenido
+
+
+
+
+//Posteo listado de gestion del item
+
+$.ajax({
+
+  method:"POST",
+  url:"https://api.mercadolibre.com/items?access_token="+token,
+  data:{
+  title:"Item de test - No Ofertar",
+  category_id:"MLA5529",
+  price:10,
+  currency_id:"ARS",
+  available_quantity:1,
+  buying_mode:"buy_it_now",
+  listing_type_id:"bronze",
+  condition:"new",
+  description: "Item:,  Ray-Ban WAYFARER Gloss Black RB2140 901  Model: RB2140. Size: 50mm. Name: WAYFARER. Color: Gloss Black. Includes Ray-Ban Carrying Case and Cleaning Cloth. New in Box",
+  video_id: "YOUTUBE_ID_HERE",
+  warranty: "12 months by Ray Ban",
+  pictures:[
+    {source:"http://upload.wikimedia.org/wikipedia/commons/f/fd/Ray_Ban_Original_Wayfarer.jpg"},
+    {source:"http://en.wikipedia.org/wiki/File:Teashades.gif"}
+  ]}
+
+});
+
+//Validacion de los items de usuario
+    $.ajax({
+      method:"POST",
+      url:'https://api.mercadolibre.com/items/validate?access_token='+ token,
+      data:{title:"Teacup",
+            category_id:"MLA1902",
+            price:10,
+            currency_id:"ARS",
+            available_quantity:1,
+            buying_mode:"buy_it_now",
+            listing_type_id:"bronze",
+            condition:"new",
+            description: "Item:, Teacup Model: 1. Size: 5cm. Color: White. New in Box",
+            video_id: "YOUTUBE_ID_HERE",
+            pictures:[
+              {source:"http://upload.wikimedia.org/wikipedia/commons/e/e9/Tea_Cup.jpg"}
+              ]}
+    });
+
+
+
+ </script> 
+
+
+
+
+  
+</body>
+</html>

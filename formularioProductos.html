@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html lang="es"><!-- lenguaje español-->
+<head> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, maximum-scale=1">   <!-- adaptar tamaño de pantalla-->
+    
+    
+    <link rel="stylesheet"  href="css/fontello.css">
+    <link rel="stylesheet"  href="css/style.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+   
+    <title> Publica tus productos</title>
+                                    <!-- Atributos-->
+</head>
+
+<body >
+<header>
+   <!-- menu-->
+    <div class="contenedor">
+        <h1>Mi Tiendita</h1>
+
+               <!-- atributos de botones -->
+        <input type="checkbox" id="menu-bar">
+        <label class="icon-menu" for="menu-bar"></label>
+         <!-- menu desplegable-->
+                <nav class="menu">
+
+                       
+                         <!-- cierre de sesion de mercado libre-->
+                  <a id = "cierre_sesion" href="https://www.mercadolibre.com/jms/mlm/lgz/logout/?go=https://auth.mercadolibre.com.mx/authorization?response_type=token&client_id=7384467225553284" rel="nofollow">Cerrar Sesion</a>
+                     
+                   
+                    
+                </nav>
+            </div>
+      </header>
+
+
+    <div class="contenedor-form">
+        <div class="toggle">
+            </div>
+        
+
+        <div class="formulario">
+           <center><h2>Nueva publicacion</h2></center>
+
+           
+
+  <fieldset>
+
+    <legend>Ingresa fotos de tu producto</legend>
+
+    <form enctype="multipart/form-data" action="uploader.php" method="POST">
+     <input name="uploadedfile
+     " type="file" />
+
+</form>
+
+  </fieldset>
+
+          <fieldset>
+
+    <legend>Ingresa un video</legend>
+
+   
+
+  </fieldset>
+
+            <fieldset>
+
+    <legend>Describe tu producto</legend>
+<!-- usando metodo post(forma oculta) para mandar la info. -->
+<form  method="POST" action="">
+    <p>Titulo: <input type="text" name="Describe-producto" placeholder="Ej." required></p>
+
+
+                  <div class="caja" >
+                        Categoria
+                        <!-- se obtiene info. de name categoria  -->
+                            <select name="categoria" id="">
+
+                          <option value="MLA5725">Accesorios para Vehículos</option>
+                          <option value="MLA1071">Animales y Mascotas</option>
+                            <option value="MLA1367">Antigüedades</option>
+                            </select>
+                  </div>
+Descripcion:
+                <textarea placeholder="Escribe aquí tus comentarios" name="comentarios" rows="10" cols="40">
+                	
+                </textarea>
+
+</form>
+  </fieldset>
+
+
+<fieldset>
+
+<form id="precio">
+<td align="right">Precio</td>
+	<td align="left"><input name="precio" type="text" ></td>
+
+				<div class="caja">
+                        Estado:
+                            <select name="estado">
+                            <option value="nuevo">Nuevo</option>
+                            <option value="usado">Usado</option>
+                            
+                            </select>
+                  </div>
+
+
+
+    <p>
+Stock:
+			<select name="stock" >
+				<option value="cantidad" >Cantidad</option>
+				<option value="siempre disponible">Siempre disponible
+				</option>
+				</select>
+				<input type="text" name="cantidad-stock">
+</p>
+	
+</form>
+</fieldset>
+ 
+
+  <p><input type="submit" value="Enviar-información"></p>
+
+
+        </div>
+        
+    </div>
+    
+
+
+
+              
+                      <!-- submenu-->
+                            <script src="js/menu.js"></script>        
+          
+            
+            
+        </body>
+        </html>
