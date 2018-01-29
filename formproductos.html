@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Publica tu producto</title>
+  <link rel="stylesheet" type="text/css" href="css/materialize.css">
+  <link rel="stylesheet" 
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+  crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/materialize.js"></script>
+  <script type="text/javascript" src="js/bootbox.min.js"></script>
+
+
+</head>
+<body>
+
+  <nav>
+    <div class="nav-wrapper  #64b5f6 blue lighten-2">
+      <a class="brand-logo center"  href="/index.html">Mi Tiendita</a>
+    </div>
+  </nav>
+
+  <div class="row">
+
+    <div class="col-lg-12 col-md-12 col-sm-12 brand-logo center">
+      Completa el Formulario y Publica tu Producto
+    </div>
+
+  </div>
+  <div class="row">
+
+    <div class="col-lg-2 col-md-2 col-sm-2">
+
+    </div>
+
+    <div class="col-md-8 col-sm-8 col-lg-8">
+      <form id="my_form">
+        <div class="form-group">
+
+          <label for="idTitle">Introduzca el titulo de tu Publicacion</label>
+          <input type="text" name="idTitle" id="idTitle" placeholder="El nombre de tu producto">
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="selectCategoria"> Seleccione la categoria</label>
+          <select class="form-control" name="selectCategoria" id="selectCategoria">
+
+            <option>Accesorios para vehiculos</option>
+            <option>Alimentos y Bebidas</option>
+            <option>Animales y Mascotas</option>
+            <option>Arte y antigüedades </option>
+            <option>Autos,Motos y otros</option>
+            <option>Bebes</option>
+            <option>Belleza y cuidado personal</option>
+            <option>Camaras y Accesorios</option>
+            <option>Celulares y Telefonia</option>
+            <option>Coleccionables</option>
+            <option>Consolas y Videojuegos</option>
+            <option>Deportes y Fitness</option>
+            <option>Electrodomesticos</option>
+            <option>Electronica, Audio y Video</option>
+            <option>Herramientas y Construccion</option>
+            <option>Hogar, Muebles y Jardin</option>
+            <option>Industrias y Oficinas</option>
+            <option>Inmuebles</option>
+            <option>Instrumentos Musicales</option>
+            <option>Joyas y Relojes</option>
+            <option>Juegos y Juguetes</option>
+            <option>Libros, Revistas y Comics</option>
+            <option>Musica, Peliculas y Series</option>
+            <option>Recuerdos, Cotillon y Fiestas</option>
+            <option>Ropa, Bolsas y Calzado</option>
+            <option>Salud y Equipamento Medico</option>
+            <option>Servicios</option>
+            <option>Otras Categorias</option>
+
+          </select>
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="idDescripcion">Introduzca la Descripcion de su Producto</label>
+          
+          <textarea class="form-control" name="idDescripcion" id="idDescripcion" rows="6"></textarea>
+
+        </div>
+
+        <div class="form-group">
+          <label for="idDrop">Seleccione la Imagen de su Producto</label>
+          <input type="file" class="form-control-file"  name="idDrop" id="idDrop">
+
+        </div>
+        <div class="row">
+          <div class="col-md-2 col-lg-2 col-sm-2">
+            <div class=form-group>
+
+              <label for="idQuantity">Unidades en Venta</label>
+              <input type="text" id="idQuantity" name="idQuantity">
+
+            </div>
+          </div>
+          <div class="col-md-8 col-lg-8 col-sm-8"> 
+            <div class="form-group">
+              <label for="idItemCond">Estado del Producto</label>
+              <select class="form-control" id="idItemCond" name="idItemCond">
+
+                <option>Nuevo</option>
+                <option>Usado</option>
+                <option>No Especificado</option>
+
+              </select>
+
+            </div>
+          </div>
+          <div class="col-md-2 col-lg-2 col-sm-2">
+
+            <div class="form-group">
+
+              <label for="idPrecio">Introduzca el Precio del producto</label>
+              <input type="text"  name="idPrecio" id="idPrecio">
+
+            </div>
+          </div> 
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-12 col-md-12 col-sm-12">
+
+            <button  type="submit" class="btn btn-primary" onclick="enviar()">Publicar</button>
+
+          </div>
+
+        </div>
+      </form>
+
+      <div class="col-lg-2 col-md-2 col-sm-2">
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script type="text/javascript">
+
+    function enviar(){
+
+var form=$("form");
+var resultado=$(".resultado");
+
+form.on("submit",function(event) {
+
+ event.preventDefault();
+
+ var data=$(this).serializeArray();
+  console.log(data);
+});
+}
+
+  </script>
+
+
+</body>
+</html>
